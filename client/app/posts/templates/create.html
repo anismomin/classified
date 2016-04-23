@@ -1,0 +1,125 @@
+<form class="cd-form cd-form-post" [ngFormModel]="postForm" (ngSubmit)="createPost(postForm.value)" enctype="multipart/form-data">
+		<fieldset>
+			<legend>Create a Post</legend>
+			<div class="error-message" [hidden]="postForm.valid">
+				<p>Please enter a valid Phone Number</p>
+			</div>
+			<div class="fieldset">
+				<label for="title">Title</label>
+				<input type="text" name="title" id="title"  ngControl="title" required>
+				<control-messages control="title"></control-messages>
+			</div>
+			<div class="fieldset">
+				<label for="price">Price</label>
+				<input type="text" name="price" id="price"  ngControl="price" required>
+				<control-messages control="price"></control-messages>
+			</div>
+		    <div class="fieldset">
+				<label for="category">Category</label>
+				<p class="cd-select">
+					<select class="category" ngControl="category">
+						<option value="0">Select Category</option>
+						<option  value="mobile">Mobile</option>
+						<option  value="vehicles">Vehicles</option>
+						<option  value="animals">Animals</option>
+						<option  value="house">House</option>
+					</select>
+				</p>
+				<control-messages control="category"></control-messages>
+			</div> 
+			<div class="fieldset">
+				<label for="description">Item description</label>
+      			<textarea name="description" id="description" ngControl="description"></textarea>
+      			<control-messages control="description"></control-messages>
+			</div>
+			<div class="fieldset">
+				<label class="images" for="cd-images">Add Images</label>
+				<input type="file" name="images" (change)="fileChangeEvent($event)" ngControl="images" multiple>
+				<control-messages control="images"></control-messages>
+		    </div> 
+			<div class="fieldset">
+				<label for="name">Name</label>
+				<input type="text" name="name" ngControl="name">
+				<control-messages control="name"></control-messages>
+		    </div> 
+		    <div class="fieldset">
+				<label for="phone">Phone</label>
+				<input type="text" name="phone" ngControl="phone">
+				<control-messages control="phone"></control-messages>
+		    </div> 
+		 	<div class="fieldset">
+				<label for="state">State</label>
+				<p class="cd-select">
+					<select class="budget" ngControl="state">
+						<option value="0">Select State</option>
+						<option value="sindh">Sindh</option>
+						<option value="punjan">Punjab</option>
+						<option value="balochistan">Balochistan</option>
+						<option value="kpk">KPK</option>
+					</select>
+				</p>
+				<control-messages control="state"></control-messages>
+			</div>
+			<div class="fieldset">
+				<label for="city">City</label>
+				<p class="cd-select">
+					<select class="budget" ngControl="city">
+						<option value="0">Select City</option>
+						<option value="karachi">karachi</option>
+						<option value="lahore">lahore</option>
+						<option value="peshawar">peshawar</option>
+						<option value="ajk">ajk</option>
+					</select>
+				</p>
+				<control-messages control="city"></control-messages>
+			</div>
+			<div  class="fieldset">
+		      	<button type="submit" class="full-width" [class.btnLoading]="postFormProcess" [disabled]="!postForm.valid  || postFormProcess" >Create Post</button>
+
+		      	<button md-raised-button color="primary"  >Create Post</button>
+		    </div>
+		</fieldset>
+
+		<!-- 
+		    
+<div class="fieldset">
+				<label for="city">Features</label>
+				<ul class="cd-form-list">
+					<li>
+						<input type="checkbox" id="cd-checkbox-1">
+						<label for="cd-checkbox-1">Option 1</label>
+					</li>
+
+					<li>
+						<input type="checkbox" id="cd-checkbox-2">
+						<label for="cd-checkbox-2">Option 2</label>
+					</li>
+
+					<li>
+						<input type="checkbox" id="cd-checkbox-3">
+						<label for="cd-checkbox-3">Option 3</label>
+					</li>
+				</ul>
+			</div>
+			<div class="fieldset">
+				<label for="city">Project type</label>
+				<ul class="cd-form-list">
+					<li>
+						<input type="radio" name="radio-button" id="cd-radio-1" checked>
+						<label for="cd-radio-1">Choice 1</label>
+					</li>
+						
+					<li>
+						<input type="radio" name="radio-button" id="cd-radio-2">
+						<label for="cd-radio-2">Choice 2</label>
+					</li>
+
+					<li>
+						<input type="radio" name="radio-button" id="cd-radio-3">
+						<label for="cd-radio-3">Choice 3</label>
+					</li>
+				</ul>
+			</div>
+
+		    -->
+	</form>

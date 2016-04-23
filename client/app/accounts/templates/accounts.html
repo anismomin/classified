@@ -1,0 +1,89 @@
+<div class="cd-user-modal" [class.is-visible]="signInUpModal != null" (click)="closeSignInUpModal($event)"> <!-- this is the entire modal form, including the background -->
+	<a class="cd-close-modal" (click)="closeSignInUpModal($event)">Close</a>
+	<div class="cd-user-modal-container"> <!-- this is the container wrapper -->
+		<ul class="cd-switcher">
+			<li><a [class.selected]="signInUpModal" (click)="showSignIn()" >Sign in</a></li>
+			<li><a [class.selected]="!signInUpModal" (click)="showSignUp()">New account</a></li>
+		</ul>
+		
+		<div id="cd-login" [class.is-selected]="signInUpModal"> <!-- log in form -->
+			
+			<!-- <button (click)="getpost()">Test Get Request </button>
+			<p>{{postResponse}}</p> -->
+
+			<form class="cd-form" [ngFormModel]="loginForm" (ngSubmit)="login(loginForm.value)">
+				<div class="fieldset">
+					<label for="loginUsername">Username</label>
+					<input type="text" ngControl="loginUsername" placeholder="Username" >
+					<control-messages control="loginUsername"></control-messages>
+				</div>
+				<div class="fieldset">
+					<label for="loginPassword">Password</label>
+					<input type="password"  placeholder="Password" ngControl="loginPassword" >
+					<control-messages control="loginPassword"></control-messages>
+				</div>
+
+				<div class="fieldset">
+					<input type="checkbox" id="remember-me" checked>
+					<label for="remember-me">Remember me</label>
+				</div>
+				
+				<div class="fieldset">
+					<button class="full-width" type="submit" [class.btnLoading]="loginFormProcess" [disabled]="!loginForm.valid || loginFormProcess" (click)="submitLoginData()">Login</button>
+				</div>
+			</form>
+			
+			<p class="cd-form-bottom-message"><a href="#0">Forgot your password?</a></p>
+			
+		</div> <!-- cd-login -->
+		
+		<div id="cd-signup" [class.is-selected]="!signInUpModal"> <!-- sign up form -->
+			<form class="cd-form" novalidate [ngFormModel]="registerForm" (ngSubmit)="register(registerForm.value)">
+				<div class="fieldset">
+					<label for="registerUsername">Username</label>
+					<input type="text" placeholder="Username" ngControl="registerUsername">
+					<control-messages control="registerUsername"></control-messages>
+				</div>
+
+				<div class="fieldset">
+					<label for="registerEmail">E-mail</label>
+					<input type="email" placeholder="E-mail" ngControl="registerEmail">
+					<control-messages control="registerEmail"></control-messages>
+				</div>
+
+				<div class="fieldset">
+					<label for="registerPassword">Password</label>
+					<input type="password" placeholder="Password" ngControl="registerPassword">
+					<control-messages control="registerPassword"></control-messages>
+				</div>
+
+				<div class="fieldset">
+					<input type="checkbox" id="accept-terms">
+					<label for="accept-terms">I agree to the <a href="#0">Terms</a></label>
+				</div>
+
+				<div class="fieldset">
+					<button class="full-width" cl type="submit" [class.btnLoading]="registerFormProcess" [disabled]="!registerForm.valid  || registerFormProcess" (click)="submitRegisterData()">Create account</button>
+				</div>
+			</form>
+		</div> <!-- cd-signup -->
+
+		<div id="cd-reset-password"> <!-- reset password form -->
+			<p class="cd-form-message">Lost your password? Please enter your email address. You will receive a link to create a new password.</p>
+
+			<form class="cd-form">
+				<div class="fieldset">
+					<label for="reset-email">E-mail</label>
+					<input id="reset-email" type="email" placeholder="E-mail">
+					<span class="cd-error-message">Error message here!</span>
+				</div>
+
+				<div class="fieldset">
+					<input class="full-width has-padding" type="submit" value="Reset password">
+				</div>
+			</form>
+
+			<p class="cd-form-bottom-message"><a href="#0">Back to log-in</a></p>
+		</div> <!-- cd-reset-password -->
+	</div> <!-- cd-user-modal-container -->
+</div> <!-- cd-user-modal -->

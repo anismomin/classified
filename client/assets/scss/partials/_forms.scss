@@ -1,0 +1,452 @@
+.cd-form {
+	padding: 1.4em;
+	
+	.error-message p {
+		background: $color-5;
+		color: $color-4;
+		font-size: 1.4rem;
+		text-align: center;
+		@include font-smoothing;
+		border-radius: .25em;
+		padding: 16px;
+	}
+
+	.error {
+		border-color: $color-5 !important;
+	}
+	
+	legend {
+		padding-bottom: 10px;
+		margin-bottom: 20px;
+		margin-top: 20px;
+		font-size: 2rem;
+		border-bottom: 1px solid $color-3;
+	}
+
+	.fieldset {
+		position: relative;
+		margin: 1.4em 0;
+
+		&:first-child {
+			margin-top: 0;
+		}
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+
+		&.has-error {
+			input {
+				border: 1px solid $red;	
+			}
+		}
+
+		&.has-success {
+			input {
+				border: 1px solid green;	
+			}
+		}
+	}
+	
+	label {
+		@include font-size(20px);
+		color: darken($color-3, 30%);
+		margin-bottom: 8px;
+		display: block;
+	}
+
+	[required] {
+		background: url('../images/cd-required.svg') no-repeat top right;
+	}
+
+	input , button {
+		margin: 0;
+		padding: 0;
+		@include border-radius;
+		font-size: 16px;
+		
+		&.full-width {
+			width: 100%;
+		}
+
+		&.has-border {
+			border: 1px solid $color-3;
+			@include appearance(none);
+
+			&:focus {
+				border-color: $color-1;
+				box-shadow: 0 0 5px rgba($color-1, .1);
+				outline: none;
+			}
+		}
+
+		&[type=submit] {
+			padding: 16px 0;
+			cursor: pointer;
+			background: $color-2;
+			color: #FFF;
+			font-weight: bold;
+			border: none;
+			@include appearance(none);
+
+			.no-touch &:hover, .no-touch &:focus {
+				background: lighten($color-2, 5%);
+				outline: none;
+			}
+
+
+		}
+
+		&.btnLoading {
+			background: 'fff';
+			outline: none;
+			cursor: not-allowed;
+			position:relative;
+			overflow: hidden;
+			
+			&:before {
+				content: 'Processing Request';
+				background: #E94B35;
+				height:100%;
+				line-height: 100%;
+				color:#fff;
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				left: 0px;
+				top: 0px;
+				padding:16px 0; 
+			}	
+
+			.no-touch &:hover, .no-touch &:focus {
+				background: #E94B35;
+				outline: none;
+			}
+
+		}
+
+		&.btnSuccess {
+			background: 'fff';
+			outline: none;
+			cursor: not-allowed;
+			position:relative;
+			overflow: hidden;
+			
+			&:before {
+				content: 'Success!';
+				background: #279D4F;
+				height:100%;
+				line-height: 100%;
+				color:#fff;
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				left: 0px;
+				top: 0px;
+				padding:16px 0; 
+			}	
+
+			.no-touch &:hover, .no-touch &:focus {
+				background: #279D4F;
+				outline: none;
+			}
+
+		}
+
+		&:disabled {
+			background: lighten($color-2, 25%);
+			outline: none;
+
+			.no-touch &:hover, .no-touch &:focus {
+				background: lighten($color-2, 25%);
+				outline: none;
+				cursor: not-allowed;
+			}
+
+		}
+
+	}
+
+	input, textarea, select, label {
+		font-family: $primary-font;
+		font-size: 1.6rem;
+		color: $color-1;
+
+	}
+
+	input[type="text"], 
+	input[type="email"],
+	input[type="password"],
+	input[type="file"], 
+	textarea, 
+	select,
+	legend {
+		display: block;
+		width: 100%;
+		@include appearance(none);
+
+	}
+	
+	input[type="text"], 
+	input[type="email"],
+	input[type="password"],
+	input[type="file"], 
+	textarea, 
+	select {
+		/* general style for input elements */
+		padding: 12px;
+		border: 1px solid darken($color-3, 10%);
+		background-color: $color-4;
+		border-radius: .25em;
+		box-shadow: inset 0 1px 1px rgba(#000, .08);
+
+		&:focus {
+			outline: none;
+			border-color: $color-2;
+			box-shadow: 0 0 5px rgba($color-2, .2);
+		}
+	}
+
+	.cd-select {
+		/* select element wapper */
+		position: relative;
+
+		&::after {
+			/* arrow icon for select element */
+			content: '';
+			position: absolute;
+			z-index: 1;
+			right: 16px;
+			top: 50%;
+			margin-top: -8px;
+
+			display: block;
+			width: 16px;
+			height: 16px;
+
+			background: url('../images/cd-arrow.svg') no-repeat center center;
+			pointer-events: none;
+		}
+	}
+
+	select {
+		box-shadow: 0 1px 3px rgba(#000, .08);
+		cursor: pointer;
+	}
+
+	select::-ms-expand {
+		display: none;
+	}
+
+	
+	input[type=radio],
+	input[type=checkbox] {
+		/* hide original check and radio buttons */
+		position: absolute;
+		left: 0;
+		top: 50%;
+		@include transform(translateY(-50%));
+		margin: 0;
+		padding: 0;
+		opacity: 0;
+		z-index: 2;
+	}
+
+	input[type="radio"] + label, 
+	input[type="checkbox"] + label {
+		padding-left: 24px;
+		padding-top:10px;
+	}
+
+	input[type="radio"] + label::before,
+	input[type="radio"] + label::after,
+	input[type="checkbox"] + label::before,
+	input[type="checkbox"] + label::after {
+		/* custom radio and check boxes */
+		content: '';
+		display: block;
+		position: absolute;
+		left: 0;
+		top: 50%;
+		margin-top: -8px;
+		width: 16px;
+		height: 16px;
+	}
+
+	input[type="radio"] + label::before,
+	input[type="checkbox"] + label::before {
+		border: 1px solid darken($color-3, 10%);
+		background: $color-4;
+		box-shadow: inset 0 1px 1px rgba(#000, .08);
+	}
+
+	input[type="radio"] + label::before,
+	input[type="radio"] + label::after {
+		border-radius: 50%;
+	}
+
+	input[type="checkbox"] + label::before,
+	input[type="checkbox"] + label::after {
+		border-radius: .25em;
+	}
+
+	input[type="radio"] + label::after,
+	input[type="checkbox"] + label::after {
+		background-color: $color-2;
+		background-position: center center;
+		background-repeat: no-repeat;
+		box-shadow: 0 0 5px rgba($color-2, .4);
+		display: none;
+	}
+
+	input[type="radio"] + label::after {
+		/* custom image for radio button */
+		background-image: url('../images/cd-icon-radio.svg');
+	}
+
+	input[type="checkbox"] + label::after {
+		/* custom image for checkbox */
+		background-image: url('../images/cd-icon-check.svg');
+	}
+
+	input[type="radio"]:focus + label::before,
+	input[type="checkbox"]:focus + label::before {
+		/* add focus effect for radio and check buttons */
+		box-shadow: 0 0 5px rgba($color-2, .6);
+	}
+
+	input[type="radio"]:checked + label::after,
+	input[type="checkbox"]:checked + label::after {
+		display: block;
+	}
+
+	input[type="radio"]:checked + label::before,
+	input[type="radio"]:checked + label::after,
+	input[type="checkbox"]:checked + label::before,
+	input[type="checkbox"]:checked + label::after {
+		@include animation(cd-bounce .3s);
+	}
+
+	textarea {
+		min-height: 200px;
+		resize: vertical;
+		overflow: auto;
+	}
+
+	.cd-error-message {
+		display: inline-block;
+		position: absolute;
+		left: 1px;
+		bottom: -30px;
+		background: rgba($red, .9);
+		padding: .8em;
+		z-index: 1;
+		color: #FFF;
+		@include font-size(13px);
+		@include border-radius;
+
+		/* prevent click and touch events */
+		pointer-events: none;
+
+		// visibility: hidden;
+		// opacity: 0;
+	
+		// @include transition(opacity .2s 0, visibility 0 .2s);
+		
+
+		opacity: 1;
+			visibility: visible;
+
+			@include transition(opacity .2s 0, visibility 0 0);
+
+		&::after {
+			/* triangle */
+			content: '';
+			position: absolute;
+			left: 22px;
+			bottom: 100%;
+			@include triangle(16px, rgba($red, .9), up);
+		}
+
+		&.is-visible {
+			opacity: 1;
+			visibility: visible;
+
+			@include transition(opacity .2s 0, visibility 0 0);
+		}
+	}
+	
+	.cd-form-list {
+		margin-top: 16px;
+		@include clearfix;
+	}
+
+	.cd-form-list li {
+		/* wrapper for radio and checkbox input types */
+		display: inline-block;
+		position: relative;
+		@include user-select(none);
+		margin: 0 26px 16px 0;
+		float: left;
+	}
+
+	@include MQ(S) {
+		padding: 2em;
+
+		.fieldset {
+			margin: 2em 0;
+
+			&:first-child {
+				margin-top: 0;
+			}
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		legend + div {
+			/* reduce margin-top for first form element after the legend */
+			margin-top: 20px;
+		}
+
+		label {
+			font-size: 1.4rem;
+			margin-bottom: 10px;
+		}
+
+		input[type="text"], 
+		input[type="email"], 
+		input[type="password"], 
+		textarea, 
+		select {
+			padding: 16px;
+		}
+	}
+}
+
+.cd-form-message {
+	padding: 1.4em 1.4em 0;
+	@include font-size(14px);
+	line-height: 1.4;
+	text-align: center;
+
+	@include MQ(S) {
+		padding: 2em 2em 0;
+	}
+}
+
+.cd-form-bottom-message {
+	position: absolute;
+	width: 100%;
+	left: 0;
+	bottom: -30px;
+	text-align: center;
+	@include font-size(24px);
+
+	a {
+		color: #FFF;
+		text-decoration: underline;
+	}
+}
+

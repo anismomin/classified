@@ -1,0 +1,23 @@
+/* -------------------------------- 
+
+Form
+
+-------------------------------- */
+
+.cd-form-post {
+	//width: 90%;
+	//max-width: $M; // breakpoints inside partials > _layout.scss
+	//margin: 4em auto;
+	@include clearfix;
+
+	//added By anis
+	background: $color-4;
+	padding:40px;
+	margin:20px;
+
+
+}
+
+
+
+

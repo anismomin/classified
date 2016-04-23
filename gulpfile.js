@@ -12,19 +12,19 @@ gulp.task('clean', function(cb) {
 
 gulp.task('ts-lint', function() {
 
-	return gulp
-		.src(config.allTs)
-		.pipe(tslint())
-		.pipe(tslint.report('prose', {
-			emmitError: false
-		}))
+	// return gulp
+	// 	.src(config.client.allTs)
+	// 	.pipe(tslint())
+	// 	.pipe(tslint.report('prose', {
+	// 		emmitError: false
+	// 	}))
 });
 
 gulp.task('compile-ts', function() {
 
 	var sourceTsFiles = [
-		config.allTs,
-		config.typings
+		config.client.allTs,
+		config.client.typings
 	];
 
 	var toResult = gulp
@@ -34,27 +34,38 @@ gulp.task('compile-ts', function() {
 
 	return toResult.js
 		.pipe(sourcemap.write('.'))
-		.pipe(gulp.dest(config.toOutputhPath));
+		.pipe(gulp.dest(config.client.toOutputhPath));
+});
+
+gulp.task('compile-server-ts', function() {
+
+	var sourceTsFiles = config.server.allTs;
+
+	return gulp
+		.src(sourceTsFiles)
+		.pipe(sourcemap.init())
+		.pipe(gulp.dest(config.server.toOutputhPath));
+		
 });
 
 gulp.task('copy-html', function () {
 
     return gulp
-        .src(config.srcTemplateHTML)
-        .pipe(gulp.dest(config.toOutputhPath))
+        .src(config.client.srcTemplateHTML)
+        .pipe(gulp.dest(config.client.toOutputhPath))
 });
 
 gulp.task('copy-css', function () {
 
     return gulp
-        .src(config.srcTemplateCSS)
-        .pipe(gulp.dest(config.toOutputhPath))
+        .src(config.client.srcTemplateCSS)
+        .pipe(gulp.dest(config.client.toOutputhPath))
 });
 
 // compile each time when we change something in /src folder
-gulp.task('watch', ['ts-lint', 'compile-ts'], function() {
+gulp.task('watch', ['ts-lint', 'compile-ts', 'compile-server-ts'], function() {
 	
-	gulp.watch([config.allTs], ['ts-lint', 'compile-ts', 'copy-html', 'copy-css']);	
+	gulp.watch([config.client.allTs], ['ts-lint', 'compile-ts', 'compile-server-ts', 'copy-html', 'copy-css']);	
 });
 
-gulp.task('default', ['clean', 'ts-lint', 'compile-ts', 'copy-html', 'copy-css']);
+gulp.task('default', ['clean', 'ts-lint', 'compile-ts', 'compile-server-ts', 'copy-html', 'copy-css']);

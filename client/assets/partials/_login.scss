@@ -1,0 +1,112 @@
+
+/* -------------------------------- 
+
+# sigin/signup popup 
+
+-------------------------------- */
+
+.cd-user-modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba($color-1, .9);
+	z-index: $modal-zindex;
+	overflow-y: auto;
+	cursor: pointer;
+
+	visibility: hidden;
+	opacity: 0;
+	@include transition(opacity .3s, visibility .3s);
+
+	&.is-visible {
+		visibility: visible;
+		opacity: 1;
+
+		.cd-user-modal-container {
+			@include transform(translateY(0));
+		}
+	}
+}
+
+.cd-user-modal-container {
+	position: relative;
+	width: 90%;
+	max-width: 600px;
+	background: #FFF;
+	margin: 3em auto 4em;
+	cursor: auto;
+	@include border-radius;
+	@include transform(translateY(-30px));
+
+	@include transition-property (transform);
+	@include transition-duration(.3s);
+
+	.cd-switcher {
+		@include clearfix;
+
+		li {
+			@include column(.5);
+			text-align: center;
+
+			&:first-child a {
+				border-radius: .25em 0 0 0;
+			}
+
+			&:last-child a {
+				border-radius: 0 .25em 0 0;
+			}
+		}
+
+		a {
+			display: block;
+			width: 100%;
+			height: 50px;
+			line-height: 50px;
+			background: $color-3;
+			color: darken($color-3, 30%);
+
+			&.selected {
+				background: #FFF;
+				color: $main-text;
+			}
+		}
+	}
+
+	@include MQ(S) {
+		margin: 4em auto;
+
+		.cd-switcher a {
+			height: 70px;
+			line-height: 70px;
+		}
+	}
+}
+
+.cd-close-modal {
+	/* form X button on top right */
+	display: block;
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	right: 0;
+	top: 0px;
+	background: url('../images/cd-icon-close.svg') no-repeat center center;
+	text-indent: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+
+	// @include MQ(L) {
+	// 	display: none;
+	// }
+}
+
+#cd-login, #cd-signup, #cd-reset-password {
+	display: none;
+}
+
+#cd-login.is-selected, #cd-signup.is-selected, #cd-reset-password.is-selected {
+	display: block;
+}
+

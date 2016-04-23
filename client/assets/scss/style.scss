@@ -1,0 +1,75 @@
+@import './reset'; // colors, fonts etc...
+
+@import 'core';
+
+@import '../partials/header';
+
+@import '../partials/sidebar'; 
+
+@import '../partials/forms';
+
+@import '../partials/login'; 
+
+@import '../partials/posts'; 
+
+@import '../partials/createPost'; 
+
+/* -------------------------------- 
+
+Main Page Content
+
+-------------------------------- */
+
+.cd-main-content {
+
+	.content-wrapper {
+		padding: $header-height-S 10px 3em;
+
+		h1 {
+			text-align: center;
+			padding: 3em 0;
+			font-size: 2rem;
+		}
+	}
+
+	&::before {
+		/* never visible - used to check MQ in jQuery */
+		display: none;
+		content: 'mobile';
+	}
+
+	@include MQ(M) {
+
+		.content-wrapper {
+			margin-left: $sidebar-width-M;
+			padding-top: $header-height-M;
+
+			h1 {
+				padding: 4em 0;
+				font-size: 3.2rem;
+				font-weight: 300;
+			}
+		}
+
+		&::before {
+			content: 'tablet';
+		}
+	}
+
+	@include MQ(L) {
+
+		.content-wrapper {
+			margin-left: $sidebar-width-L;
+		}
+
+		&::before {
+			content: 'desktop';
+		}
+	}
+}
+
+
+
+
+
+
