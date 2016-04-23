@@ -73,6 +73,7 @@ module.exports = function(app) {
     });
   });
 
+
   // // Protect chat routes with JWT
   // // GET messages for authenticated user
   // apiRoutes.get('/chat', requireAuth, function(req, res) {

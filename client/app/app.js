@@ -70,13 +70,20 @@ System.register(['angular2/core', 'angular2/router', './home/components/home.com
                     this.accountDropDownActive = !this.accountDropDownActive;
                 };
                 ClassifiedApp.prototype.logOut = function () {
-                    var _this = this;
-                    this._loginservice.logOut()
-                        .subscribe(function (data) { return JSON.stringify(data); }, function (error) { return console.log(error); }, function () {
-                        _this.signInUpActive = null;
-                        _this.logInStatus = false;
-                        console.log('logout');
-                    });
+                    localStorage.removeItem('classified_jwt');
+                    this.signInUpActive = null;
+                    this.logInStatus = false;
+                    console.log('logout');
+                    // this._loginservice.logOut()
+                    // 	.subscribe(
+                    // 	data => JSON.stringify(data),
+                    // 	error => console.log(error),
+                    // 	() => {
+                    // 		this.signInUpActive = null;
+                    // 		this.logInStatus = false;
+                    // 		console.log('logout');
+                    // 	}
+                    // );
                     return;
                 };
                 ClassifiedApp.prototype.upateLoginStatus = function (value) {

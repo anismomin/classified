@@ -57,7 +57,7 @@ export class AccountsService {
 	register(regCreds) {
 
 		let register = "username=" + regCreds.username + "&email=" + regCreds.email + "&password=" + regCreds.password;
-		console.log(register);
+		
 		var headers = new Headers();
 		headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
@@ -69,9 +69,11 @@ export class AccountsService {
 
 	}
 
-	logOut() {
-		return this.http.get('/logout')
-			.map(res => res.json());
-	}
+	// logOut() {
+
+	// 	localStorage.getItem("jwt")
+	// 	// return this.http.get('/logout')
+	// 	// 	.map(res => res.json());
+	// }
 
 }

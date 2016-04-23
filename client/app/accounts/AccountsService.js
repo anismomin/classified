@@ -64,7 +64,6 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/add/operator/map', 'rxj
                 }*/
                 AccountsService.prototype.register = function (regCreds) {
                     var register = "username=" + regCreds.username + "&email=" + regCreds.email + "&password=" + regCreds.password;
-                    console.log(register);
                     var headers = new http_1.Headers();
                     headers.append('Content-Type', 'application/x-www-form-urlencoded');
                     return this.http.post('/register', register, {
@@ -72,10 +71,6 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/add/operator/map', 'rxj
                     })
                         .map(function (res) { return res.json(); })
                         .delay(3000);
-                };
-                AccountsService.prototype.logOut = function () {
-                    return this.http.get('/logout')
-                        .map(function (res) { return res.json(); });
                 };
                 AccountsService = __decorate([
                     core_1.Injectable(), 

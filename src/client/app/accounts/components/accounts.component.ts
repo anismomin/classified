@@ -108,7 +108,9 @@ export class AccountsComponent {
 					this.loginFormProcess = false;
               //       this.buildLoginForm();
 		            // this.buildRegisterForm();
-					//console.log(this.loginResponse);
+		            // 
+		            localStorage.setItem('classified_jwt', JSON.parse(this.loginResponse).token);
+					console.log(this.loginResponse);
 				}
 				);
 		}

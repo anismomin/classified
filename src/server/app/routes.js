@@ -73,22 +73,17 @@ module.exports = function(app) {
     });
   });
 
-  apiRoutes.post('/logout', function(req, res) {
-    
-    res.status(200).json({ success: true, token: 'JWT Removed' });
- 
-  });
 
   // // Protect chat routes with JWT
   // // GET messages for authenticated user
-  // apiRoutes.get('/chat', requireAuth, function(req, res) {
-  //   Chat.find({$or : [{'to': req.user._id}, {'from': req.user._id}]}, function(err, messages) {
-  //     if (err)
-  //       res.status(400).send(err);
+  apiRoutes.get('/chat', requireAuth, function(req, res) {
+    Chat.find({$or : [{'to': req.user._id}, {'from': req.user._id}]}, function(err, messages) {
+      if (err)
+        res.status(400).send(err);
 
-  //     res.status(400).json(messages);
-  //   });
-  // });
+      res.status(400).json(messages);
+    });
+  });
 
   // // POST to create a new message from the authenticated user
   // apiRoutes.post('/chat', requireAuth, function(req, res) {

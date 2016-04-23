@@ -64,17 +64,22 @@ export class ClassifiedApp {
 	}
 
 	logOut(){
-
-		this._loginservice.logOut()
-			.subscribe(
-			data => JSON.stringify(data),
-			error => console.log(error),
-			() => {
-				this.signInUpActive = null;
-				this.logInStatus = false;
-				console.log('logout');
-			}
-		);
+		
+		localStorage.removeItem('classified_jwt');
+		this.signInUpActive = null;
+		this.logInStatus = false;
+		console.log('logout');
+		
+		// this._loginservice.logOut()
+		// 	.subscribe(
+		// 	data => JSON.stringify(data),
+		// 	error => console.log(error),
+		// 	() => {
+		// 		this.signInUpActive = null;
+		// 		this.logInStatus = false;
+		// 		console.log('logout');
+		// 	}
+		// );
 	
 		return;
 	}

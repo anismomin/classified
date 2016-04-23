@@ -105,7 +105,9 @@ System.register(['angular2/core', 'angular2/http', 'angular2/common', '../Accoun
                             _this.loginFormProcess = false;
                             //       this.buildLoginForm();
                             // this.buildRegisterForm();
-                            //console.log(this.loginResponse);
+                            // 
+                            localStorage.setItem('classified_jwt', JSON.parse(_this.loginResponse).token);
+                            console.log(_this.loginResponse);
                         });
                     }
                 };
