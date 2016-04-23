@@ -24,7 +24,7 @@ export class AccountsService {
 		var headers = new Headers();
 		headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
-		return this.http.post('http://localhost:3000/user/login', login, {
+		return this.http.post('/login', login, {
 			headers: headers
 		})
 		.map(res => res.json())
@@ -38,7 +38,7 @@ export class AccountsService {
 		var headers = new Headers();
 		headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
-		return this.http.post('http://localhost:3000/user/login', login, {
+		return this.http.post('/login', login, {
 			headers: headers,
 			timeout: 1000
 		})
@@ -57,11 +57,11 @@ export class AccountsService {
 	register(regCreds) {
 
 		let register = "username=" + regCreds.username + "&email=" + regCreds.email + "&password=" + regCreds.password;
-		
+		console.log(register);
 		var headers = new Headers();
 		headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
-		return this.http.post('http://localhost:3000/user/register', register, {
+		return this.http.post('/register', register, {
 			headers: headers
 		})
 		.map(res => res.json())
@@ -70,7 +70,7 @@ export class AccountsService {
 	}
 
 	logOut() {
-		return this.http.get('http://localhost:3000/user/logout')
+		return this.http.get('/logout')
 			.map(res => res.json());
 	}
 

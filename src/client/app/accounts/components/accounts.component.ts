@@ -108,7 +108,7 @@ export class AccountsComponent {
 					this.loginFormProcess = false;
               //       this.buildLoginForm();
 		            // this.buildRegisterForm();
-					console.log(this.loginResponse);
+					//console.log(this.loginResponse);
 				}
 				);
 		}

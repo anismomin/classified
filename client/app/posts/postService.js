@@ -29,36 +29,34 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/add/operator/map', 'rxj
             PostService = (function () {
                 function PostService(http) {
                     this.http = http;
-                    //private webUrl = 'http://deploy123.herokuapp.com';
-                    this.webUrl = 'http://localhost:3000';
                 }
                 PostService.prototype.createPost = function (postData) {
                     var Creds = JSON.stringify(postData);
                     var headers = new http_1.Headers();
                     headers.append('Content-Type', 'application/json');
-                    return this.http.post(this.webUrl + '/post/create', Creds, {
+                    return this.http.post('/post/create', Creds, {
                         headers: headers
                     })
                         .map(function (res) { return res.json(); })
                         .delay(3000);
                 };
                 PostService.prototype.getPosts = function () {
-                    return this.http.get(this.webUrl + '/post')
+                    return this.http.get('/post')
                         .map(function (res) { return res.json(); })
                         .delay(1500);
                 };
                 PostService.prototype.getpostById = function (id) {
-                    return this.http.get(this.webUrl + '/post/' + id)
+                    return this.http.get('/post/' + id)
                         .map(function (res) { return res.json(); })
                         .delay(1500);
                 };
                 PostService.prototype.deletePost = function (id) {
-                    return this.http.delete(this.webUrl + '/post/' + id)
+                    return this.http.delete('/post/' + id)
                         .map(function (res) { return res.json(); })
                         .delay(1500);
                 };
                 PostService.prototype.editPost = function (id) {
-                    return this.http.delete(this.webUrl + '/post/' + id)
+                    return this.http.delete('/post/' + id)
                         .map(function (res) { return res.json(); })
                         .delay(1500);
                 };

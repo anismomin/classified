@@ -34,7 +34,7 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/add/operator/map', 'rxj
                     var login = "username=" + loginCreds.username + "&password=" + loginCreds.password;
                     var headers = new http_1.Headers();
                     headers.append('Content-Type', 'application/x-www-form-urlencoded');
-                    return this.http.post('http://localhost:3000/user/login', login, {
+                    return this.http.post('/login', login, {
                         headers: headers
                     })
                         .map(function (res) { return res.json(); })
@@ -47,7 +47,7 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/add/operator/map', 'rxj
                     var headers = new Headers();
                     headers.append('Content-Type', 'application/x-www-form-urlencoded');
             
-                    return this.http.post('http://localhost:3000/user/login', login, {
+                    return this.http.post('/login', login, {
                         headers: headers,
                         timeout: 1000
                     })
@@ -64,16 +64,17 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/add/operator/map', 'rxj
                 }*/
                 AccountsService.prototype.register = function (regCreds) {
                     var register = "username=" + regCreds.username + "&email=" + regCreds.email + "&password=" + regCreds.password;
+                    console.log(register);
                     var headers = new http_1.Headers();
                     headers.append('Content-Type', 'application/x-www-form-urlencoded');
-                    return this.http.post('http://localhost:3000/user/register', register, {
+                    return this.http.post('/register', register, {
                         headers: headers
                     })
                         .map(function (res) { return res.json(); })
                         .delay(3000);
                 };
                 AccountsService.prototype.logOut = function () {
-                    return this.http.get('http://localhost:3000/user/logout')
+                    return this.http.get('/logout')
                         .map(function (res) { return res.json(); });
                 };
                 AccountsService = __decorate([

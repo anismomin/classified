@@ -27,10 +27,11 @@ module.exports = function(app) {
   // Register new users
   apiRoutes.post('/register', function(req, res) {
     console.log(req.body);
-    if(!req.body.email || !req.body.password) {
-      res.status(400).json({ success: false, message: 'Please enter email and password.' });
+    if(!req.body.username || !req.body.email || !req.body.password) {
+      res.status(400).json({ success: false, message: 'Please enter username, email and password.' });
     } else {
       const newUser = new User({
+        username: req.body.username,
         email: req.body.email,
         password: req.body.password
       });
@@ -46,9 +47,10 @@ module.exports = function(app) {
   });
 
   // Authenticate the user and get a JSON Web Token to include in the header of future requests.
-  apiRoutes.post('/authenticate', function(req, res) {
+  apiRoutes.post('/login', function(req, res) {
+    
     User.findOne({
-      email: req.body.email
+      username: req.body.username
     }, function(err, user) {
       if (err) throw err;
 
@@ -71,61 +73,61 @@ module.exports = function(app) {
     });
   });
 
-  // Protect chat routes with JWT
-  // GET messages for authenticated user
-  apiRoutes.get('/chat', requireAuth, function(req, res) {
-    Chat.find({$or : [{'to': req.user._id}, {'from': req.user._id}]}, function(err, messages) {
-      if (err)
-        res.status(400).send(err);
+  // // Protect chat routes with JWT
+  // // GET messages for authenticated user
+  // apiRoutes.get('/chat', requireAuth, function(req, res) {
+  //   Chat.find({$or : [{'to': req.user._id}, {'from': req.user._id}]}, function(err, messages) {
+  //     if (err)
+  //       res.status(400).send(err);
 
-      res.status(400).json(messages);
-    });
-  });
+  //     res.status(400).json(messages);
+  //   });
+  // });
 
-  // POST to create a new message from the authenticated user
-  apiRoutes.post('/chat', requireAuth, function(req, res) {
-    const chat = new Chat();
-        chat.from = req.user._id;
-        chat.to = req.body.to;
-        chat.message_body = req.body.message_body;
+  // // POST to create a new message from the authenticated user
+  // apiRoutes.post('/chat', requireAuth, function(req, res) {
+  //   const chat = new Chat();
+  //       chat.from = req.user._id;
+  //       chat.to = req.body.to;
+  //       chat.message_body = req.body.message_body;
 
-        // Save the chat message if there are no errors
-        chat.save(function(err) {
-            if (err)
-                res.status(400).send(err);
+  //       // Save the chat message if there are no errors
+  //       chat.save(function(err) {
+  //           if (err)
+  //               res.status(400).send(err);
 
-            res.status(201).json({ message: 'Message sent!' });
-        });
-  });
+  //           res.status(201).json({ message: 'Message sent!' });
+  //       });
+  // });
 
-  // PUT to update a message the authenticated user sent
-  apiRoutes.put('/chat/:message_id', requireAuth, function(req, res) {
-    Chat.findOne({$and : [{'_id': req.params.message_id}, {'from': req.user._id}]}, function(err, message) {
-      if (err)
-        res.send(err);
+  // // PUT to update a message the authenticated user sent
+  // apiRoutes.put('/chat/:message_id', requireAuth, function(req, res) {
+  //   Chat.findOne({$and : [{'_id': req.params.message_id}, {'from': req.user._id}]}, function(err, message) {
+  //     if (err)
+  //       res.send(err);
 
-      message.message_body = req.body.message_body;
+  //     message.message_body = req.body.message_body;
 
-      // Save the updates to the message
-      message.save(function(err) {
-        if (err)
-          res.send(err);
+  //     // Save the updates to the message
+  //     message.save(function(err) {
+  //       if (err)
+  //         res.send(err);
 
-        res.json({ message: 'Message edited!' });
-      });
-    });
-  });
+  //       res.json({ message: 'Message edited!' });
+  //     });
+  //   });
+  // });
 
-  // DELETE a message
-  apiRoutes.delete('/chat/:message_id', requireAuth, function(req, res) {
-    Chat.findOneAndRemove({$and : [{'_id': req.params.message_id}, {'from': req.user._id}]}, function(err) {
-      if (err)
-        res.send(err);
+  // // DELETE a message
+  // apiRoutes.delete('/chat/:message_id', requireAuth, function(req, res) {
+  //   Chat.findOneAndRemove({$and : [{'_id': req.params.message_id}, {'from': req.user._id}]}, function(err) {
+  //     if (err)
+  //       res.send(err);
 
-      res.json({ message: 'Message removed!' });
-    });
-  });
+  //     res.json({ message: 'Message removed!' });
+  //   });
+  // });
 
   // Set url for API group routes
-  app.use('/api', apiRoutes);
+  app.use('/', apiRoutes);
 };
