@@ -14,8 +14,8 @@ export class PostService {
 
 	public postResponse;
 	
-	private webUrl = 'http://deploy123.herokuapp.com';
-	//private webUrl = 'http:localhost"3000';
+	//private webUrl = 'http://deploy123.herokuapp.com';
+	private webUrl = 'http://localhost:3000';
 
 	constructor(public http: Http) { }
 

@@ -86,17 +86,17 @@ System.register(['angular2/core', 'angular2/router', './home/components/home.com
                     core_1.Component({
                         selector: 'app',
                         templateUrl: 'app/app.html',
-                        directives: [home_component_1.HomeComponent, accounts_component_1.AccountsComponent, router_1.ROUTER_DIRECTIVES],
+                        directives: [home_component_1.HomeComponent, accounts_component_1.AccountsComponent, router_1.ROUTER_DIRECTIVES, router_1.RouterOutlet],
                         providers: [AccountsService_1.AccountsService]
                     }),
                     router_1.RouteConfig([
-                        /*{ path: '/', name: 'root', redirectTo: ['CreatePost']},*/
+                        { path: '/', name: 'root', redirectTo: ['CreatePost'] },
                         { path: '/users', name: 'UsersList', component: home_component_1.HomeComponent },
                         { path: '/home', name: 'Home', component: home_component_1.HomeComponent },
                         { path: '/posts', name: 'Posts', component: posts_component_1.PostsComponent },
                         { path: '/posts/:id', name: 'ViewPost', component: view_component_1.ViewPostComponent },
                         { path: '/posts/create', name: 'CreatePost', component: createPost_component_1.CreatePostComponent },
-                        { path: '/jwt', name: 'auth', component: home_1.AuthComponent, useAsDefault: true },
+                        { path: '/jwt', name: 'Auth', component: home_1.AuthComponent, useAsDefault: true }
                     ]), 
                     __metadata('design:paramtypes', [AccountsService_1.AccountsService])
                 ], ClassifiedApp);
