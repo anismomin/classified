@@ -1,5 +1,5 @@
 import {Component} from 'angular2/core'
-import {RouteConfig,RouterOutlet, ROUTER_DIRECTIVES} from 'angular2/router'
+import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router'
 
 import {HomeComponent} from './home/components/home.component'
 
@@ -16,17 +16,17 @@ import {AccountsService} from './accounts/AccountsService'
 @Component({
     selector: 'app',
     templateUrl: 'app/app.html',
-    directives: [HomeComponent, AccountsComponent, ROUTER_DIRECTIVES, RouterOutlet],
+    directives: [HomeComponent, AccountsComponent, ROUTER_DIRECTIVES],
     providers: [AccountsService]
 })
 @RouteConfig([
 	// { path: '/', name: 'root', redirectTo: ['Home']},
 	{ path: '/users', name: 'UsersList', component: HomeComponent },
-	{ path: '/home', name: 'Home', component: HomeComponent, useAsDefault: true },
+	{ path: '/home', name: 'Home', component: HomeComponent},
 	{ path: '/posts', name: 'Posts', component: PostsComponent},
 	{ path: '/posts/:id', name: 'ViewPost', component: ViewPostComponent },
 	{ path: '/posts/create', name: 'CreatePost', component: CreatePostComponent},	
-	{ path: '/jwt', name: 'Auth', component: AuthComponent }
+	{ path: '/jwt', name: 'Auth', component: AuthComponent , useAsDefault: true }
 ])
 export class ClassifiedApp {
 
