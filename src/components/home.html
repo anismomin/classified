@@ -1,0 +1,40 @@
+<div class="ui container">
+	<sm-segment class="raised">
+		<h1>Angular 2 and Express authentication with JWT!</h1>
+		<sm-list class="ui list bulleted">
+			<sm-item class="item">username: {{user.username}}</sm-item>				
+			<sm-item class="item">password: {{user.password}}</sm-item>
+		</sm-list>
+		<p>
+			Hardcoded data used for login and signup functionality. 
+		</p>
+	</sm-segment>
+	<br/>
+	
+	<button md-raised-button color="primary" class="" (click)="call()">Call protected API</button>
+	<button md-raised-button color="primary" class="positive" (click)="login()">Login</button>
+	<button md-raised-button color="primary" class="basic red" (click)="remove()">Remove JWT from localStorage</button>
+	
+	
+	<button class="right floated" (click)="signup()">Signup</button>
+	
+	<div class="ui divider hidden"></div>
+	
+	<!-- Signup response -->
+	<sm-segment style="word-wrap: break-word;" *ngIf="response" class="raised">
+		<sm-list class="ui list bulleted">
+			<sm-item class="item">hashed: {{response?.hashed}}</sm-item>				
+			<sm-item class="item">salt: {{response?.salt}}</sm-item>
+		</sm-list>
+	</sm-segment>
+	
+	<!-- API call response -->
+	<sm-segment *ngIf="error" class="inverted red">
+		<sm-item class="item">{{error?.message}}</sm-item>
+	</sm-segment>
+	
+	<sm-segment *ngIf="data" class="inverted green">
+		<sm-item class="item">{{data?.title}}</sm-item>
+		<sm-item class="item">{{data?.text}}</sm-item>
+	</sm-segment>
+</div>
