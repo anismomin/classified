@@ -20,13 +20,13 @@ import {AccountsService} from './accounts/AccountsService'
     providers: [AccountsService]
 })
 @RouteConfig([
-	{ path: '/', name: 'root', redirectTo: ['CreatePost']},
+	// { path: '/', name: 'root', redirectTo: ['Home']},
 	{ path: '/users', name: 'UsersList', component: HomeComponent },
-	{ path: '/home', name: 'Home', component: HomeComponent},
+	{ path: '/home', name: 'Home', component: HomeComponent, useAsDefault: true },
 	{ path: '/posts', name: 'Posts', component: PostsComponent},
 	{ path: '/posts/:id', name: 'ViewPost', component: ViewPostComponent },
 	{ path: '/posts/create', name: 'CreatePost', component: CreatePostComponent},	
-	{ path: '/jwt', name: 'Auth', component: AuthComponent , useAsDefault: true }
+	{ path: '/jwt', name: 'Auth', component: AuthComponent }
 ])
 export class ClassifiedApp {
 
